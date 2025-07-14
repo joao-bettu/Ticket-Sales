@@ -1,0 +1,16 @@
+{
+    "name": "vendor/tickets",
+    "description": "Dev Evolution Final Project",
+    "autoload": {
+        "psr-4": {
+            "Tickets\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "joao-bettu",
+            "email": "joaobettuvictor@gmail.com"
+        }
+    ],
+    "require": {}
+}

@@ -3,39 +3,36 @@
 namespace Tickets;
 
 use PDO;
+use PDOException;
 
 class CreateTables{
-    private $pdo;
+    private PDO $pdo;
 
     public function __construct(PDO $db) {
-        $this->pdo = $db;
-        $this->criarTabelaIngressos();
-        echo "Tabela de Ingressos criada!\n";
-        $this->criarTabelaUsuarios();
-        echo "Tabela de Usuários criada!\n";
-        $this->criarTabelaCliente();
-        echo "Tabela de Clientes criada!\n";
+        try {
+            $this->pdo = $db;
+            $this->criarTabelaIngressos();
+            echo "Tabela de Ingressos criada!\n";
+            $this->criarTabelaUsuarios();
+            echo "Tabela de Usuários criada!\n";
+            $this->criarTabelaCliente();
+            echo "Tabela de Clientes criada!\n";
+        } catch (PDOException $e) {
+            echo "Erro criando tabelas: " . $e->getMessage() . PHP_EOL;
+        }
     }
-
-    private function criarTabelaIngressos() {
-        $this->pdo->exec("CREATE TABLE IF NOT EXISTS ingresso ()");
-    }
-
-    /*
-     * Tabela de ingresso deve ter:
-     * ID
-     * nome do evento
-     * descrição
-     * data do evento
-     * quantidade disponível
-     * reservado
-     * data e hora da última reserva
-     * usuario que criou este ingresso (para visualização dos usuários)
-     * 
-    */
 
     private function criarTabelaUsuarios() {
-        $this->pdo->exec("CREATE TABLE IF NOT EXISTS usuario ()");
+        $this->pdo->exec("CREATE TABLE IF NOT EXISTS usuarios (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nome TEXT NOT NULL,
+            email TEXT UNIQUE NOT NULL,
+            senha TEXT NOT NULL.
+            criar BOOLEAN,
+            editar BOOLEAN,
+            deletar BOOLEAN,
+            visualizar BOOLEAN
+        )");
     }
 
     /*
@@ -49,7 +46,12 @@ class CreateTables{
     */
 
     private function criarTabelaCliente() {
-        $this->pdo->exec("CREATE TABLE IF NOT EXISTS cliente ()");
+        $this->pdo->exec("CREATE TABLE IF NOT EXISTS clientes (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nome TEXT NOT NULL,
+            email TEXT UNIQUE NOT NULL,
+            senha TEXT NOT NULL,
+        )");
     }
 
     /*
@@ -58,8 +60,36 @@ class CreateTables{
      * nome
      * email
      * senha
-     * ingressos comprados
+     * 
     */
+
+    private function criarTabelaIngressos() {
+        $this->pdo->exec("CREATE TABLE IF NOT EXISTS ingressos (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            evento TEXT NOT NULL,
+            descricao TEXT,
+            valor REAL NOT NULL,
+            data_evento DATE NOT NULL,
+            quantidade INTEGER,
+            reservado BOOLEAN,
+            data_ultima_reserva DATE,
+            vendedor INTEGER,
+            FOREIGN KEY (vendedor) REFERENCES usuarios(id)
+        )");
+    }
+
+    /*
+     * Tabela de ingresso deve ter:
+     * ID
+     * nome do evento
+     * descrição do evento
+     * data do evento
+     * quantidade disponível
+     * reservado
+     * data e hora da última reserva
+     * usuario que criou este ingresso (para visualização dos usuários)
+     * 
+    */    
 }
 
 ?>

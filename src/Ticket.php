@@ -4,9 +4,11 @@ namespace Tickets;
 
 use PDO;
 use PDOException;
+
+use Tickets\AbstracClass;
 use Tickets\DB;
 
-class Ticket {
+class Ticket extends AbstracClass {
     private array $columns = [
         "id",
         "evento",
@@ -18,13 +20,6 @@ class Ticket {
         "data_ultima_reserva",
         "vendedor"
     ];
-
-    private PDO $pdo;
-    private string $table = "ingressos";
-
-    public function __construct(PDO $pdo) {
-        $this->pdo = $pdo;        
-    }
 
     public function create() {}
 

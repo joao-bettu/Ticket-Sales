@@ -5,9 +5,9 @@ namespace Tickets;
 use PDO;
 use PDOException;
 
-use Tickets\AbstracClass;
+use Tickets\AbstractClass;
 
-class Ticket extends AbstracClass {
+class Ticket extends AbstractClass {
     private array $columns = [
         "id",
         "evento",

@@ -5,7 +5,7 @@ namespace Tickets;
 use PDO;
 use PDOException;
 
-abstract class AbstracClass {
+abstract class AbstractClass {
     protected PDO $pdo;
     protected string $table;
     

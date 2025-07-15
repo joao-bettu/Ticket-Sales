@@ -12,12 +12,9 @@ class CreateTables{
         try {
             $this->pdo = $db;
             $this->criarTabelaIngressos();
-            echo "Tabela de Ingressos criada!\n";
             $this->criarTabelaUsuarios();
-            echo "Tabela de Usuários criada!\n";
             $this->criarTabelaCliente();
-            echo "Tabela de Clientes criada!\n";
-        } catch (PDOException $e) {
+            echo "Tabela de Clientes criada!\n";        } catch (PDOException $e) {
             echo "Erro criando tabelas: " . $e->getMessage() . PHP_EOL;
         }
     }

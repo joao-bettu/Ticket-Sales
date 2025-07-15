@@ -6,7 +6,6 @@ use PDO;
 use PDOException;
 
 use Tickets\AbstracClass;
-use Tickets\DB;
 
 class Ticket extends AbstracClass {
     private array $columns = [
@@ -21,15 +20,7 @@ class Ticket extends AbstracClass {
         "vendedor"
     ];
 
-    public function create() {}
-
-    public function read() {}
-
-    public function readAll() {}
-
-    public function update() {}
-
-    public function delete() {}
+    public function find(array $filter) {}
 }
 
 ?>

@@ -15,7 +15,6 @@ class Client extends AbstractClass {
         "senha"
     ];
     
-    public function find(array $filter) {}
 }
 
 ?>

@@ -18,8 +18,7 @@ class User extends AbstractClass {
       "deletar",
       "visualizar"  
     ];
-
-    public function find(array $filter) {}
+    
 }
 
 ?>

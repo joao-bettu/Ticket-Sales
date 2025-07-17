@@ -20,7 +20,6 @@ class Ticket extends AbstractClass {
         "vendedor"
     ];
 
-    public function find(array $filter) {}
 }
 
 ?>

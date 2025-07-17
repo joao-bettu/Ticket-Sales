@@ -93,11 +93,43 @@ abstract class AbstractClass {
 
     /**
      * Função find:
-     * Será definida em cada classe filha
-     * Será semelhante a função read
-     * Receberá filtros caso deseja trazer informações especificas de cada tabela
+     * Busca na tabela todos os itens correspondente ao filtro recebido
     */
-    abstract public function find(array $filter);
+    protected function find(array $filter) {
+        try {
+            $sql = "SELECT * FROM {$this->table}";
+            $wheres = [];
+            $parameters = [];
+
+            if(!$filter){
+                foreach($filter as $column => $value){
+                    array_push($wheres, "$column = :$column");
+                    $parameters[":$column"] = $value;
+                }
+                $sql .= "WHERE " . implode(" AND ", $wheres);
+            }
+
+            $stmt = $this->pdo->prepare($sql);
+
+            foreach($parameters as $key => $value){
+                $type = PDO::PARAM_STR;
+                if(is_int($value)){
+                    $type = PDO::PARAM_INT;
+                }else if(is_bool($value)){
+                    $type = PDO::PARAM_BOOL;
+                }else if(is_null($value)){
+                    $type = PDO::PARAM_NULL;
+                }
+                $stmt->bindValue($key, $value, $type);
+            }
+            
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+        } catch (PDOException $e) {
+            echo "Erro ao buscar registros da tabela: {$this->table}. Erro: " . $e->getMessage() . PHP_EOL;
+        }
+    }
 }
 
 ?>

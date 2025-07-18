@@ -14,7 +14,7 @@ class CreateTables{
             $this->criarTabelaIngressos();
             $this->criarTabelaUsuarios();
             $this->criarTabelaCliente();
-            echo "Tabela de Clientes criada!\n";        } catch (PDOException $e) {
+        } catch (PDOException $e) {
             echo "Erro criando tabelas: " . $e->getMessage() . PHP_EOL;
         }
     }
@@ -28,7 +28,7 @@ class CreateTables{
             criar BOOLEAN,
             editar BOOLEAN,
             deletar BOOLEAN,
-            visualizar BOOLEAN
+            ler BOOLEAN
         )");
     }
 
@@ -40,7 +40,7 @@ class CreateTables{
      * senha
      * permissões (deletar, editar, criar ou ver)
      * 
-    */
+     */
 
     private function criarTabelaCliente() {
         $this->pdo->exec("CREATE TABLE IF NOT EXISTS clientes (
@@ -58,7 +58,7 @@ class CreateTables{
      * email
      * senha
      * 
-    */
+     */
 
     private function criarTabelaIngressos() {
         $this->pdo->exec("CREATE TABLE IF NOT EXISTS ingressos (
@@ -86,7 +86,7 @@ class CreateTables{
      * data e hora da última reserva
      * usuario que criou este ingresso (para visualização dos usuários)
      * 
-    */    
+     */    
 }
 
 ?>

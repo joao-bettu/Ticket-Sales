@@ -12,7 +12,7 @@ abstract class AbstractClass {
     /**
      * Função construct:
      * Cada instância das classes filhas vai informar o PDO recebido da função Tickets\DB e o nome da tabela a qual se refere
-    */
+     */
     public function __construct(PDO $pdo, string $table) {
         $this->pdo =  $pdo;
         $this->table = $table;
@@ -22,8 +22,8 @@ abstract class AbstractClass {
      * Função create:
      * Insere registro na tabela usando um array associativo recebido como parâmetro
      * O array deve conter as informações (obrigatórias) para inserir na tabela
-    */
-    protected function create(array $data) {
+     */
+    public function create(array $data) {
         try {
         $columns = implode(", ", array_keys($data));
         $values = ":" . implode(", :", array_keys($data));
@@ -38,8 +38,8 @@ abstract class AbstractClass {
     /**
      * Função read:
      * Lê todos os registros de uma tabela
-    */
-    protected function read() {
+     */
+    public function read() {
         try {
             $sql = "SELECT * FROM {$this->table}";
             $stmt = $this->pdo->query($sql);
@@ -53,8 +53,8 @@ abstract class AbstractClass {
      * Função update:
      * Edita algum registro de uma tabela
      * Precisa do ID do registro para realizar a edição
-    */
-    protected function update(array $data) {
+     */
+    public function update(array $data) {
         try {
             if (!isset($data['id'])) {
                 throw new \Exception("ID não informado para edição.");
@@ -79,8 +79,8 @@ abstract class AbstractClass {
     /**
      * Função delete:
      * Exclúi um registro de uma tabela
-    */
-    protected function delete(int $id) {
+     */
+    public function delete(int $id) {
         try {
             $sql = "DELETE FROM {$this->table} WHERE id = :id";
             $stmt = $this->pdo->prepare($sql);
@@ -94,8 +94,8 @@ abstract class AbstractClass {
     /**
      * Função find:
      * Busca na tabela todos os itens correspondente ao filtro recebido
-    */
-    protected function find(array $filter) {
+     */
+    public function find(array $filter) {
         try {
             $sql = "SELECT * FROM {$this->table}";
             $wheres = [];

@@ -25,10 +25,8 @@ class CreateTables{
             nome TEXT NOT NULL,
             email TEXT UNIQUE NOT NULL,
             senha TEXT NOT NULL.
-            criar BOOLEAN,
             editar BOOLEAN,
-            deletar BOOLEAN,
-            ler BOOLEAN
+            deletar BOOLEAN
         )");
     }
 
@@ -38,7 +36,7 @@ class CreateTables{
      * nome
      * email
      * senha
-     * permissões (deletar, editar, criar ou ver)
+     * permissões (deletar, editar)
      * 
      */
 

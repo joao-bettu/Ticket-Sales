@@ -1,7 +1,7 @@
 <?php 
 
 require_once __DIR__ . "/../vendor/autoload.php";
-require_once "database.php";
+require_once "/../src/database.php";
 
 use Tickets\Client;
 
@@ -43,6 +43,10 @@ if(empty($errors)){
         "email" => $clean_email,
         "senha" => $hash_password
     ]);
+    echo "Cliente cadastrado com sucesso, redirecionado a tela de login.";
+    sleep(5);
+    header("Location: login.html");
+    exit;
 } else {
     $mensagem = implode("<br>", $errors);
     echo $mensagem;

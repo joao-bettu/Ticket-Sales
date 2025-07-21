@@ -9,7 +9,7 @@ session_start();
 
 $user = new User($db, "usuarios");
 
-$user_selected = $client->find([
+$user_selected = $user->find([
     "email" => $_GET["email-user"]
 ]) ?? false;
 

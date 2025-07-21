@@ -23,6 +23,13 @@ if(!$clean_email){
     $errors[] = "Digite um e-mail válido!";
 }
 
+$client_email = $client->find([
+    "email" => $clean_email
+]) ?? false;
+if(!$client_email){
+    $errors[] = "E-mail já está em uso. Tente outro e-mail.";
+}
+
 $password = $_POST["client-password"] ?? '';
 if(strlen($password) < 8){
     $errors[] = "A senha deve ter pelo menos 8 caracteres.";

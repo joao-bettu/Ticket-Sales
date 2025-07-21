@@ -22,7 +22,13 @@ $clean_email = filter_var($email, FILTER_VALIDATE_EMAIL);
 if(!$clean_email){
     $errors[] = "Digite um e-mail válido!";
 }
-// Necessário validar se e-mail já está cadastrado
+
+$user_email = $user->find([
+    "email" => $clean_email
+]) ?? false;
+if(!$user_email){
+    $errors[] = "E-mail já está em uso. Tente outro e-mail.";
+}
 
 $password = $_POST["user-password"] ?? '';
 if(strlen($password) < 8){

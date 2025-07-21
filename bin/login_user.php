@@ -9,22 +9,28 @@ session_start();
 
 $user = new User($db, "usuarios");
 
-$userLogin = $user->find([
-    "email" => $_GET["email-user"],
-    "senha" => $_GET["password-user"]
-]) || null;
+$user_selected = $client->find([
+    "email" => $_GET["email-user"]
+]) ?? false;
 
-if($userLogin === null){
-    echo "E-mail ou senha incorretos!";
-    echo "Redirecionado de volta para a tela de login em 5 segundos.";
+if(!$user_selected){
+    echo "E-mail informado inexistente!";
+    echo "Redirecionado de volta para a tela de login.";
     sleep(5);
     header("Location: login.html");
     exit;
-} else {
-    $_SESSION["id_user"] = $userLogin["id"];
-    $_SESSION["email_user"] = $userLogin["email"];
-    //header("Location: "); Redirecionar a tela de usuario
+}
+
+if(password_verify($_GET["password-user"], $user_selected["senha"])){
+    $_SESSION["id_user"] = $user_selected["id"];
+    $_SESSION["email_user"] = $user_selected["email"];
+    //header("Location: "); Redirecionar a tela de usuário
     //exit;
+} else {
+    echo "Senha incorreta! Tente novamente.";
+    sleep(5);
+    header("Location: login.html");
+    exit;
 }
 
 ?>

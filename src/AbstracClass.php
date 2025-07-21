@@ -101,7 +101,7 @@ abstract class AbstractClass {
             $wheres = [];
             $parameters = [];
 
-            if(!$filter){
+            if(!empty($filter)){
                 foreach($filter as $column => $value){
                     array_push($wheres, "$column = :$column");
                     $parameters[":$column"] = $value;

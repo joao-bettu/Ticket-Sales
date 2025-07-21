@@ -22,6 +22,7 @@ $clean_email = filter_var($email, FILTER_VALIDATE_EMAIL);
 if(!$clean_email){
     $errors[] = "Digite um e-mail válido!";
 }
+// Necessário validar se e-mail já está cadastrado
 
 $password = $_POST["user-password"] ?? '';
 if(strlen($password) < 8){
@@ -33,11 +34,17 @@ $edit = filter_var($_POST["edit-ticket"] ?? false, FILTER_VALIDATE_BOOL);
 $delete = filter_var($_POST["delete-ticket"] ?? false, FILTER_VALIDATE_BOOL);
 
 if(empty($errors)){
-    // Criação do usuário no banco de dados
+    $user->create([
+        "nome" => $clean_name,
+        "email" => $clean_email,
+        "senha" => $hash_password,
+        "editar" => $edit,
+        "delete" => $delete
+    ]);
 } else {
     $mensagem = implode("<br>", $errors);
     echo $mensagem;
-    header("Location: register_user.php");
+    header("Location: register.html");
     exit;
 }
 

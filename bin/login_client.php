@@ -19,22 +19,24 @@ session_start();
 
 $client = new Client($db, "clientes");
 
-$clientLogin = $client->find([
-    "email" => $_GET["email-client"],
-    "senha" => $_GET["password-client"]
+$client_selected = $client->find([
+    "email" => $_GET["email-client"]
 ]) || null;
 
-if($clientLogin === null){
-    echo "E-mail ou senha incorretos!";
-    echo "Redirecionado de volta para a tela de login em 5 segundos.";
+if($client_selected === null){
+    echo "E-mail informado inexistente!";
+    echo "Redirecionado de volta para a tela de login.";
     sleep(5);
     header("Location: login.html");
     exit;
-} else {
-    $_SESSION["id_client"] = $clientLogin["id"];
-    $_SESSION["email_client"] = $clientLogin["email"];
-    //header("Location: "); Redirecionar a tela de cliente
-    //exit;
 }
+
+// If para verificar se a senha passada está correta
+if(password_verify($_GET["password-client"], $client_selected->columns["senha"])){}
+
+//$_SESSION["id_client"] = $clientLogin["id"];
+//$_SESSION["email_client"] = $clientLogin["email"];
+//header("Location: "); Redirecionar a tela de cliente
+//exit;
 
 ?>

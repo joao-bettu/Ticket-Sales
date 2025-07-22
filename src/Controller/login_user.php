@@ -1,7 +1,7 @@
 <?php 
 
 require_once __DIR__ . "/../vendor/autoload.php";
-require_once "/../src/database.php";
+require_once "/../src/Core/database.php";
 
 use Tickets\User;
 

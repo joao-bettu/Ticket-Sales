@@ -1,53 +1,49 @@
 <?php 
 
 require_once __DIR__ . "/../vendor/autoload.php";
-require_once "/../src/database.php";
+require_once "/../src/Core/database.php";
 
-use Tickets\User;
+use Tickets\Client;
 
 session_start();
 
-$user = new User($db, "usuarios");
+$client = new Client($db, "clientes");
 
 $errors = [];
 
-$name =  $_POST["user-name"] ?? '';
+$name =  $_POST["client-name"] ?? '';
 $clean_name = filter_var($name, FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH);
 if(empty(trim($clean_name))){
     $errors[] = "O nome é obrigatório!";
 }
 
-$email =  $_POST["user-email"] ?? '';
+$email =  $_POST["client-email"] ?? '';
 $clean_email = filter_var($email, FILTER_VALIDATE_EMAIL);
 if(!$clean_email){
     $errors[] = "Digite um e-mail válido!";
 }
 
-$user_email = $user->find([
+$client_email = $client->find([
     "email" => $clean_email
 ]) ?? false;
-if(!$user_email){
+if(!$client_email){
     $errors[] = "E-mail já está em uso. Tente outro e-mail.";
 }
 
-$password = $_POST["user-password"] ?? '';
+$password = $_POST["client-password"] ?? '';
 if(strlen($password) < 8){
     $errors[] = "A senha deve ter pelo menos 8 caracteres.";
 }
 $hash_password = password_hash($password, PASSWORD_BCRYPT);
 
-$edit = filter_var($_POST["edit-ticket"] ?? false, FILTER_VALIDATE_BOOL);
-$delete = filter_var($_POST["delete-ticket"] ?? false, FILTER_VALIDATE_BOOL);
 
 if(empty($errors)){
-    $user->create([
+    $client->create([
         "nome" => $clean_name,
         "email" => $clean_email,
-        "senha" => $hash_password,
-        "editar" => $edit,
-        "delete" => $delete
+        "senha" => $hash_password
     ]);
-    echo "Usuário cadastrado com sucesso, redirecionado a tela de login.";
+    echo "Cliente cadastrado com sucesso, redirecionado a tela de login.";
     sleep(5);
     header("Location: login.html");
     exit;
@@ -57,5 +53,4 @@ if(empty($errors)){
     header("Location: register.html");
     exit;
 }
-
 ?>

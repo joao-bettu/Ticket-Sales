@@ -3,7 +3,8 @@
     "description": "Dev Evolution Final Project",
     "autoload": {
         "psr-4": {
-            "Tickets\\": "src/"
+            "Tickets\\Classes\\": "src/Classes/",
+            "Tickets\\Core\\": "src/Core/"
         }
     },
     "authors": [

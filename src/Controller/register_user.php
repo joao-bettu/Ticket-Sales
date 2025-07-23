@@ -5,8 +5,6 @@ require_once "/../src/Core/database.php";
 
 use Tickets\User;
 
-session_start();
-
 $user = new User($db, "usuarios");
 
 $errors = [];

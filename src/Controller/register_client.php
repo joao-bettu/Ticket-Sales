@@ -5,8 +5,6 @@ require_once "/../src/Core/database.php";
 
 use Tickets\Client;
 
-session_start();
-
 $client = new Client($db, "clientes");
 
 $errors = [];

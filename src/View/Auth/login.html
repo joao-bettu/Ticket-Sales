@@ -15,7 +15,7 @@
 
         <div class="login">
             <h2>Login</h2>
-            <form class="type" method="get">
+            <form class="type" method="GET">
                 <label for="log-user">Conectar como usuário</label>
                 <input type="radio" name="log-as" id="user" checked>
                 <br>
@@ -23,13 +23,13 @@
                 <input type="radio" name="log-as" id="client">
             </form>
             <br>
-            <form class="log-as-user" action="" method="get">
+            <form class="log-as-user" action="/public/index.php?route=login-user" method="GET">
                 <input type="text" placeholder="Informe seu e-mail" id="email-user"><br>
                 <input type="password" placeholder="Digite sua senha" id="password-user"><br>
                 <br>
                 <input type="submit" value="Conectar">
             </form>
-            <form class="log-as-client" action="" method="get">
+            <form class="log-as-client" action="/public/index.php?route=login-cliente" method="GET">
                 <input type="text" placeholder="Informe seu e-mail" id="email-client"><br>
                 <input type="password" placeholder="Digite sua senha" id="password-client"><br>
                 <br>

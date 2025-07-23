@@ -11,6 +11,7 @@ session_start();
 
 $path = $_GET["route"] ?? '/';
 $path = trim($path, "/");
+$request_method = $_SERVER["REQUEST_METHOD"];
 
 if($path === "login-client"){
     require ROOT_PATH . "/src/Controllers/login_client.php";

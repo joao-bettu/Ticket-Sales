@@ -5,8 +5,6 @@ require_once "/../src/Core/database.php";
 
 use Tickets\User;
 
-session_start();
-
 $user = new User($db, "usuarios");
 
 $user_selected = $user->find([
@@ -24,8 +22,8 @@ if(!$user_selected){
 if(password_verify($_GET["password-user"], $user_selected["senha"])){
     $_SESSION["id_user"] = $user_selected["id"];
     $_SESSION["email_user"] = $user_selected["email"];
-    //header("Location: "); Redirecionar a tela de usuário
-    //exit;
+    header("Location: /../View/Main/user.html");
+    exit;
 } else {
     echo "Senha incorreta! Tente novamente.";
     sleep(5);

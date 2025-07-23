@@ -15,8 +15,6 @@ use Tickets\Client;
  * 6 - session_regenerate_id(): gera um novo id de sessão. Boa prática de segurança chamá-lo após um login
  */
 
-session_start();
-
 $client = new Client($db, "clientes");
 
 $client_selected = $client->find([
@@ -34,8 +32,8 @@ if(!$client_selected){
 if(password_verify($_GET["password-client"], $client_selected["senha"])){
     $_SESSION["id_client"] = $client_selected["id"];
     $_SESSION["email_client"] = $client_selected["email"];
-    //header("Location: "); Redirecionar a tela de cliente
-    //exit;
+    header("Location: /../View/Main/client.html");
+    exit;
 } else {
     echo "Senha incorreta! Tente novamente.";
     sleep(5);

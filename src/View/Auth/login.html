@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="/public/CSS/login.css">
 </head>
 <body>
     <div class="container">
@@ -23,15 +23,15 @@
                 <input type="radio" name="log-as" id="client">
             </form>
             <br>
-            <form class="log-as-user" action="/public/index.php?route=login-user" method="GET">
-                <input type="text" placeholder="Informe seu e-mail" id="email-user"><br>
-                <input type="password" placeholder="Digite sua senha" id="password-user"><br>
+            <form class="log-as-user" action="/index.php?route=login-user" method="GET">
+                <input type="text" placeholder="Informe seu e-mail" name="email-user"><br>
+                <input type="password" placeholder="Digite sua senha" name="password-user"><br>
                 <br>
                 <input type="submit" value="Conectar">
             </form>
-            <form class="log-as-client" action="/public/index.php?route=login-cliente" method="GET">
-                <input type="text" placeholder="Informe seu e-mail" id="email-client"><br>
-                <input type="password" placeholder="Digite sua senha" id="password-client"><br>
+            <form class="log-as-client" action="/index.php?route=login-client" method="GET">
+                <input type="text" placeholder="Informe seu e-mail" name="email-client"><br>
+                <input type="password" placeholder="Digite sua senha" name="password-client"><br>
                 <br>
                 <input type="submit" value="Conectar">
             </form>

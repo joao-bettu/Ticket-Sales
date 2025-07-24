@@ -13,13 +13,11 @@ function registerClient($name = '', $email = '', $senha = ''){
     global $client;
     $errors = [];
 
-    //$name =  $_POST["client-name"] ?? '';
     $clean_name = filter_var($name, FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH);
     if(empty(trim($clean_name))){
         $errors[] = "O nome é obrigatório!";
     }
 
-    //$email =  $_POST["client-email"] ?? '';
     $clean_email = filter_var($email, FILTER_VALIDATE_EMAIL);
     if(!$clean_email){
         $errors[] = "Digite um e-mail válido!";
@@ -32,7 +30,6 @@ function registerClient($name = '', $email = '', $senha = ''){
         $errors[] = "E-mail já está em uso. Tente outro e-mail.";
     }
 
-    //$password = $_POST["client-password"] ?? '';
     if(strlen($senha) < 8){
         $errors[] = "A senha deve ter pelo menos 8 caracteres.";
     }
@@ -60,13 +57,11 @@ function registerUser($name = '', $email = '', $senha = '', $edit, $delete){
     global $user;
     $errors = [];
 
-    //$name =  $_POST["user-name"] ?? '';
     $clean_name = filter_var($name, FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH);
     if(empty(trim($clean_name))){
         $errors[] = "O nome é obrigatório!";
     }
 
-    //$email =  $_POST["user-email"] ?? '';
     $clean_email = filter_var($email, FILTER_VALIDATE_EMAIL);
     if(!$clean_email){
         $errors[] = "Digite um e-mail válido!";
@@ -79,7 +74,6 @@ function registerUser($name = '', $email = '', $senha = '', $edit, $delete){
         $errors[] = "E-mail já está em uso. Tente outro e-mail.";
     }
 
-    //$password = $_POST["user-password"] ?? '';
     if(strlen($senha) < 8){
         $errors[] = "A senha deve ter pelo menos 8 caracteres.";
     }

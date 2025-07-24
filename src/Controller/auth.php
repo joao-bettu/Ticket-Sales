@@ -85,16 +85,16 @@ function registerUser($name = '', $email = '', $senha = '', $edit, $delete){
     }
     $hash_password = password_hash($senha, PASSWORD_BCRYPT);
 
-    //$edit = filter_var($_POST["edit-ticket"] ?? false, FILTER_VALIDATE_BOOL);
-    //$delete = filter_var($_POST["delete-ticket"] ?? false, FILTER_VALIDATE_BOOL);
+    $edit_bool = filter_var($edit ?? false, FILTER_VALIDATE_BOOL);
+    $delete_bool = filter_var($delete ?? false, FILTER_VALIDATE_BOOL);
 
     if(empty($errors)){
         $user->create([
             "nome" => $clean_name,
             "email" => $clean_email,
             "senha" => $hash_password,
-            "editar" => $edit,
-            "delete" => $delete
+            "editar" => $edit_bool,
+            "delete" => $delete_bool
         ]);
         echo "Usuário cadastrado com sucesso, redirecionado a tela de login.";
         sleep(5);

@@ -23,23 +23,23 @@ $path = $_GET["route"] ?? '/';
 $path = trim($path, "/");
 $request_method = $_SERVER["REQUEST_METHOD"];
 
-if($path === "login-user" && $request_method === "GET"){
+if($path === "login-user" && $request_method === "get"){
     loginUser(
         $_GET["email-user"], 
         $_GET["password-user"]
     );
-} else if ($path === "login-client" && $request_method === "GET") {
+} else if ($path === "login-client" && $request_method === "get") {
     loginClient(
         $_GET["email-client"], 
         $_GET["password-client"]
     );
-} else if ($path === "register-client" && $request_method === "POST") {
+} else if ($path === "register-client" && $request_method === "post") {
     registerClient(
         $_POST["client-name"], 
         $_POST["client-email"], 
         $_POST["client-password"]
     );
-} else if ($path === "register-user" && $request_method === "POST") {
+} else if ($path === "register-user" && $request_method === "post") {
     registerUser(
         $_POST["user-name"],
         $_POST["user-email"],

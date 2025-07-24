@@ -1,6 +1,7 @@
 <?php 
 
 require_once __DIR__ . "/../vendor/autoload.php";
+require_once __DIR__ . "/../src/Controller/auth.php";
 define("ROOT_PATH", __DIR__ . "/..");
 session_start();
 
@@ -14,13 +15,13 @@ $path = trim($path, "/");
 $request_method = $_SERVER["REQUEST_METHOD"];
 
 if($path === "login-client"){
-    require ROOT_PATH . "/src/Controllers/login_client.php";
+//    require ROOT_PATH . "/src/Controllers/login_client.php";
 } else if ($path === "login-user") {
-    require ROOT_PATH . "/src/Controllers/login_user.php";
+//    require ROOT_PATH . "/src/Controllers/login_user.php";
 } else if ($path === "register-client") {
-    require ROOT_PATH . "/src/Controllers/register_client.php";
+//    require ROOT_PATH . "/src/Controllers/register_client.php";
 } else if ($path === "register-user") {
-    require ROOT_PATH . "/src/Controllers/register_user.php";
+//    require ROOT_PATH . "/src/Controllers/register_user.php";
 } else {
     http_response_code(404);
     echo "404 - Página Não Encontrada";

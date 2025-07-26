@@ -1,0 +1,27 @@
+body {
+    background-color: darkgray;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+}
+.action {
+    background-color: ghostwhite;
+    margin: auto;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 400px;
+    height: auto;
+}
+.login {
+    background-color: ghostwhite;
+    margin: auto;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 400px;
+    height: auto;
+}

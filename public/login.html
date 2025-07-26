@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/public/css/login.css">
+</head>
+<body>
+    <div class="container">
+        <form class="action" action="register.html">
+            <label for="criar-conta">Não possui conta?</label><br>
+            <input type="submit" value="Criar conta" id="criar-conta">
+        </form>
+
+        <div class="login">
+            <h2>Login</h2>
+            <form class="type" method="get">
+                <label for="log-user">Conectar como usuário</label>
+                <input type="radio" name="log-as" id="user" checked>
+                <br>
+                <label for="log-client">Conectar como cliente</label>
+                <input type="radio" name="log-as" id="client">
+            </form>
+            <br>
+            <form class="log-as-user" action="/src/Logic/login-user.php" method="get">
+                <input type="text" placeholder="Informe seu e-mail" name="email-user"><br>
+                <input type="password" placeholder="Digite sua senha" name="password-user"><br>
+                <br>
+                <input type="submit" value="Conectar">
+            </form>
+            <form class="log-as-client" action="/src/Logic/login-client.php" method="get">
+                <input type="text" placeholder="Informe seu e-mail" name="email-client"><br>
+                <input type="password" placeholder="Digite sua senha" name="password-client"><br>
+                <br>
+                <input type="submit" value="Conectar">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

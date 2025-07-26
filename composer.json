@@ -1,0 +1,16 @@
+{
+    "name": "ixcsoft/project-dev",
+    "autoload": {
+        "psr-4": {
+            "Tickets\\": "src/Classes/",
+            "Core\\": "src/Core/"
+        }
+    },
+    "authors": [
+        {
+            "name": "joao-bettu",
+            "email": "joaobettuvictor@gmail.com"
+        }
+    ],
+    "require": {}
+}

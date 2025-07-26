@@ -1,6 +1,8 @@
 # Projeto Final Dev Evolution
 
 ## Instruções para rodar o projeto/sistema
+1. Inicar o server com "php -S localhost:8000"
+2. Acessar "http://127.0.0.1:8000/public/login.html"
 
 ## Diagrama simples do funcionamento
 

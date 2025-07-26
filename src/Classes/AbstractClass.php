@@ -106,7 +106,7 @@ abstract class AbstractClass {
                     array_push($wheres, "$column = :$column");
                     $parameters[":$column"] = $value;
                 }
-                $sql .= "WHERE " . implode(" AND ", $wheres);
+                $sql .= " WHERE " . implode(" AND ", $wheres);
             }
 
             $stmt = $this->pdo->prepare($sql);
@@ -124,7 +124,7 @@ abstract class AbstractClass {
             }
             
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
             
         } catch (PDOException $e) {
             echo "Erro ao buscar registros da tabela: {$this->table}. Erro: " . $e->getMessage() . PHP_EOL;

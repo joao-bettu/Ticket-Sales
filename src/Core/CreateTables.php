@@ -15,7 +15,7 @@ class CreateTables{
             $this->criarTabelaUsuarios();
             $this->criarTabelaCliente();
         } catch (PDOException $e) {
-            echo "Erro criando tabelas: " . $e->getMessage() . PHP_EOL;
+            die("Erro criando tabelas: " . $e->getMessage());
         }
     }
 
@@ -65,7 +65,7 @@ class CreateTables{
             descricao TEXT,
             valor REAL NOT NULL,
             data_evento DATE NOT NULL,
-            quantidade INTEGER,
+            quantidade INTEGER NOT NULL,
             reservado BOOLEAN,
             data_ultima_reserva DATE,
             vendedor INTEGER,
@@ -85,6 +85,20 @@ class CreateTables{
      * usuario que criou este ingresso (para visualização dos usuários)
      * 
      */    
+
+    private function criarTabelaCompras() {
+        $this->pdo->exec("CREATE TABLE IF NOT EXISTS compras (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id_ingresso INTEGER NOT NULL,
+            id_cliente INTEGER NOT NULL,
+            id_vendedor INTEGER NOT NULL,
+            valor REAL NOT NULL,
+            data_compra DATE NOT NULL,
+            FOREIGN KEY (id_ingresso) REFERENCES ingressos(id),
+            FOREIGN KEY (id_cliente) REFERENCES clientes(id),
+            FOREIGN KEY (id_vendedor) REFERENCES usuarios(id)
+        )");
+    }
 }
 
 ?>

@@ -13,10 +13,8 @@ class User extends AbstractClass {
       "nome",
       "email",
       "senha",
-      "criar",
       "editar",
-      "deletar",
-      "visualizar"  
+      "deletar"
     ];
     
 }

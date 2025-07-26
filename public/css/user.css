@@ -1,0 +1,51 @@
+body {
+    background-color: darkgray;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+}
+h1, h2, h3 {
+    text-align: center;
+    background-color: ghostwhite;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px auto;
+}
+.ingressos{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-ingressos {
+    background-color: ghostwhite;
+    margin: auto;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+.add-ticket {
+    display: inline;
+    margin: auto;
+    padding: 10px;
+    border-radius: 5px;
+    width: 400px;
+    text-align: center;
+}  
+.ingressos-lista {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ticket {
+    display: inline;
+    background-color: ghostwhite;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+.edit, .delete {
+    display: inline-block;
+    margin: 5px;
+}

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Usuário</title>
     <link rel="stylesheet" href="/public/css/user.css">
 </head>
 
@@ -47,20 +47,17 @@
                 use Tickets\Ticket;
                 $tickets = new Ticket($db, "ingressos");
                 if (isset($_SESSION["id"])){
-                    $ingressos = $tickets->read();
-                    if (!empty($ingressos)) {
+                    $ingressos = $tickets->findAllBy(["vendedor" => $_SESSION["id"]]);
+                    if (count($ingressos) > 0) {
                         echo "<h3>Ingressos Disponíveis</h3>";
                         foreach ($ingressos as $ingresso) {
-                            if ($ingresso["vendedor"] != $_SESSION["id"]) {
-                                continue;
-                            }
                             echo "<div class='ticket'>";
                             echo "<h3>" . htmlspecialchars($ingresso["evento"]) . "</h3>";
                             echo "<p>Descrição: " . htmlspecialchars($ingresso["descricao"]) . "</p>";
                             echo "<p>Valor: R$" . htmlspecialchars($ingresso["valor"]) . "</p>";
                             echo "<p>Data: " . htmlspecialchars($ingresso["data_evento"]) . "</p>";
                             echo "<p>Quantidade: " . htmlspecialchars($ingresso["quantidade"]) . "</p>";
-                            echo "<p>Reservado: " . ($ingresso["reservado"] ? "Reservado" : "Disponível" ) . "</p>";
+                            echo "<p>Reservado: " . ($ingresso["reservado"] ? "Sim" : "Não" ) . "</p>";
                             echo "<form class=\"edit\" action=\"/src/Logic/edit-ticket.php\" method=\"get\">
                                     <input type=\"hidden\" class=\"hidden\" name=\"ticket-id\" value=\"" . intval($ingresso["id"]) . "\">
                                     <input type=\"submit\" name=\"edit-button\" value=\"Editar\">

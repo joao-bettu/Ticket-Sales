@@ -14,6 +14,7 @@ class CreateTables{
             $this->criarTabelaIngressos();
             $this->criarTabelaUsuarios();
             $this->criarTabelaCliente();
+            $this->criarTabelaCompras();
         } catch (PDOException $e) {
             die("Erro criando tabelas: " . $e->getMessage());
         }
@@ -68,8 +69,10 @@ class CreateTables{
             quantidade INTEGER NOT NULL,
             reservado BOOLEAN,
             data_ultima_reserva DATE,
+            cliente_reservado INTEGER,
             vendedor INTEGER,
-            FOREIGN KEY (vendedor) REFERENCES usuarios(id)
+            FOREIGN KEY (vendedor) REFERENCES usuarios(id),
+            FOREIGN KEY (cliente_reservado) REFERENCES clientes(id)
         )");
     }
 

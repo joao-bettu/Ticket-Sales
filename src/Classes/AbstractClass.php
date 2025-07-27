@@ -100,36 +100,51 @@ abstract class AbstractClass {
             $sql = "SELECT * FROM {$this->table}";
             $wheres = [];
             $parameters = [];
+            if (!empty($filter)) {
+                foreach ($filter as $column => $value) {
+                    $wheres[] = "$column = :$column";
+                    $parameters[":$column"] = $value;
+                }
+                $sql .= " WHERE " . implode(" AND ", $wheres) . " LIMIT 1";
+            }
 
-            if(!empty($filter)){
-                foreach($filter as $column => $value){
-                    array_push($wheres, "$column = :$column");
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($parameters);
+            
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            return $result === false ? null : $result;
+            
+        } catch (PDOException $e) {
+            error_log("Erro ao buscar registro: " . $e->getMessage());
+            return null;
+        }
+    }
+
+    public function findAllBy(array $filter) {
+        try {
+            $sql = "SELECT * FROM {$this->table}";
+            $wheres = [];
+            $parameters = [];
+            if (!empty($filter)) {
+                foreach ($filter as $column => $value) {
+                    $wheres[] = "$column = :$column";
                     $parameters[":$column"] = $value;
                 }
                 $sql .= " WHERE " . implode(" AND ", $wheres);
             }
 
             $stmt = $this->pdo->prepare($sql);
-
-            foreach($parameters as $key => $value){
-                $type = PDO::PARAM_STR;
-                if(is_int($value)){
-                    $type = PDO::PARAM_INT;
-                }else if(is_bool($value)){
-                    $type = PDO::PARAM_BOOL;
-                }else if(is_null($value)){
-                    $type = PDO::PARAM_NULL;
-                }
-                $stmt->bindValue($key, $value, $type);
-            }
+            $stmt->execute($parameters);
             
-            $stmt->execute();
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
             
         } catch (PDOException $e) {
-            echo "Erro ao buscar registros da tabela: {$this->table}. Erro: " . $e->getMessage() . PHP_EOL;
+            error_log("Erro ao buscar registros: " . $e->getMessage());
+            return [];
         }
     }
+
 }
 
 ?>

@@ -2,6 +2,8 @@
 
 namespace Tickets;
 
+use DateInterval;
+use DateTime;
 use PDO;
 use PDOException;
 
@@ -17,6 +19,7 @@ class Ticket extends AbstractClass {
         "quantidade",
         "reservado",
         "data_ultima_reserva",
+        "cliente_reservado",
         "vendedor"
     ];
 

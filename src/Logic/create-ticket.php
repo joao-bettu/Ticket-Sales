@@ -34,11 +34,11 @@ if (isset($_SESSION["id"]) && $_SERVER["REQUEST_METHOD"] === "POST") {
         $error[] = "A quantidade deve ser um número inteiro positivo!";
     }
     $reserved = false;
-    $reservedDate = DateTime::createFromFormat('Y-m-d', "0000-00-00");;
+    $reservedDate = new DateTime("now", new DateTimeZone("America/Sao_Paulo"));
     $vendor = $_SESSION["id"];
 
     $format_event_date = $eventDate->format('Y-m-d');
-    $format_reserved_date = $reservedDate->format('Y-m-d');
+    $format_reserved_date = $reservedDate->format('H:i:s');
 
     if(empty($error)){
         $ticket->create([
@@ -49,6 +49,7 @@ if (isset($_SESSION["id"]) && $_SERVER["REQUEST_METHOD"] === "POST") {
             "quantidade" => $quantity,
             "reservado" => $reserved,
             "data_ultima_reserva" => $format_reserved_date,
+            "cliente_reservado" => null,
             "vendedor" => $vendor
         ]);
         

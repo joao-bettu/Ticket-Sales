@@ -53,11 +53,11 @@
                         foreach ($ingressos as $ingresso) {
                             echo "<div class='ticket'>";
                             echo "<h3>" . htmlspecialchars($ingresso["evento"]) . "</h3>";
-                            echo "<p>Descrição: " . htmlspecialchars($ingresso["descricao"]) . "</p>";
-                            echo "<p>Valor: R$" . htmlspecialchars($ingresso["valor"]) . "</p>";
-                            echo "<p>Data: " . htmlspecialchars($ingresso["data_evento"]) . "</p>";
-                            echo "<p>Quantidade: " . htmlspecialchars($ingresso["quantidade"]) . "</p>";
-                            echo "<p>Reservado: " . ($ingresso["reservado"] ? "Sim" : "Não" ) . "</p>";
+                            echo "<p><strong>Descrição</strong>: " . htmlspecialchars($ingresso["descricao"]) . "</p>";
+                            echo "<p><strong>Valor</strong>: R$" . htmlspecialchars($ingresso["valor"]) . "</p>";
+                            echo "<p><strong>Data</strong>: " . htmlspecialchars($ingresso["data_evento"]) . "</p>";
+                            echo "<p><strong>Quantidade</strong>: " . ($ingresso["quantidade"] > 0 ? $ingresso["quantidade"] : "Esgotado") . "</p>";
+                            echo "<p><strong>Reservado</strong>: " . ($ingresso["reservado"] ? "Sim" : "Não" ) . "</p>";
                             echo "<form class=\"edit\" action=\"/src/Logic/edit-ticket.php\" method=\"get\">
                                     <input type=\"hidden\" class=\"hidden\" name=\"ticket-id\" value=\"" . intval($ingresso["id"]) . "\">
                                     <input type=\"submit\" name=\"edit-button\" value=\"Editar\">

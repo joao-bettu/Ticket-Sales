@@ -36,6 +36,8 @@ if ($loged_user["editar"]){
                 <input type=\"number\" id=\"quantidade\" name=\"quantidade\" value=\"" . htmlspecialchars($edit_ticket["quantidade"]) . "\" required>
                 <input type=\"submit\" value=\"Salvar Alterações\">
             </form>";
+            echo "<br>";
+            echo "<a href=\"/public/user.php\">Voltar para o menu principal</a>";
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $new_event = filter_var($_POST["evento"], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH);
             if (empty(trim($new_event))) {

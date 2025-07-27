@@ -26,6 +26,9 @@ echo "<form class=\"permission-form\" action=\"/src/Logic/edit-permission.php\" 
         <input type=\"submit\" value=\"Salvar Permissões\">
     </form>";
 
+echo "<br>";
+echo "<a href=\"/public/user.php\">Voltar para o menu principal</a>";
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $editar = filter_var($_POST["editar"] ?? false, FILTER_VALIDATE_BOOL);
     $deletar = filter_var($_POST["deletar"] ?? false, FILTER_VALIDATE_BOOL);

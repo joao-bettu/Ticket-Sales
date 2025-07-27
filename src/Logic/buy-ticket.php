@@ -71,6 +71,8 @@ if($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET["buy_ticket"])) {
             <input type=\"hidden\" name=\"ticket_id\" value=\"" . $ticket["id"] . "\">
             <input type=\"submit\" name=\"confirm_purchase\" value=\"Confirmar Compra\">
         </form>";
+        echo "<br>";
+        echo "<a href=\"/public/client.php\">Voltar para o menu principal</a>";
     } else {
         header("Location: /../../public/client.php?mensagem=ingresso-nao-encontrado-ou-esgotado");
         exit;

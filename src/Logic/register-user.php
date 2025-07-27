@@ -8,7 +8,8 @@ use Tickets\User;
 $user = new User($db, "usuarios");
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    die("Acesso negado. Método enviado $_SERVER[REQUEST_METHOD]. Apenas POST é permitido.");
+    header("Location: /../../public/register.html?mensagem=metodo-invalido");
+    exit;
 }
 
 $errors = [];

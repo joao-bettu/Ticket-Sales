@@ -12,6 +12,18 @@
     <div class="container">
         <h1>Sistema de Venda de Ingressos!</h1>
 
+        <div class="options">
+            <h3>Opções de Usuário</h3>
+            <div class="forms">
+                <form class="permission-form" action="/src/Logic/edit-permission.php" method="get">
+                    <input type="submit" name="permissao" value="Editar Permissões">
+                </form>
+                <form class="logout-form" action="/src/Logic/logout.php" method="post">
+                    <input type="submit" value="Sair">
+                </form>
+            </div>
+        </div>
+
         <div class="ingressos">
             <h2>Ingressos</h2>
             <div class="form-ingressos">
@@ -36,21 +48,28 @@
                 $tickets = new Ticket($db, "ingressos");
                 if (isset($_SESSION["id"])){
                     $ingressos = $tickets->read();
-                    if (count($ingressos) > 0) {
+                    if (!empty($ingressos)) {
                         echo "<h3>Ingressos Disponíveis</h3>";
                         foreach ($ingressos as $ingresso) {
-                            if ($ingresso["vendedor"] == $_SESSION["id"]) {
-                                echo "<div class='ticket'>";
-                                echo "<h3>" . htmlspecialchars($ingresso["evento"]) . "</h3>";
-                                echo "<p>Descrição: " . htmlspecialchars($ingresso["descricao"]) . "</p>";
-                                echo "<p>Valor: R$" . htmlspecialchars($ingresso["valor"]) . "</p>";
-                                echo "<p>Data: " . htmlspecialchars($ingresso["data_evento"]) . "</p>";
-                                echo "<p>Quantidade: " . htmlspecialchars($ingresso["quantidade"]) . "</p>";
-                                echo "<p>Reservado: " . htmlspecialchars($ingresso["reservado"]) . "</p>";
-                                echo "<form class=\"edit\" action=\"\" method=\"get\"><input type=\"submit\" name=\"edit-button\" value=\"Editar\"></form>";
-                                echo "<form class=\"delete\" action=\"\" method=\"get\"><input type=\"submit\" name=\"delete-button\" value=\"Excluir\"></form>";
-                                echo "</div>";
+                            if ($ingresso["vendedor"] != $_SESSION["id"]) {
+                                continue;
                             }
+                            echo "<div class='ticket'>";
+                            echo "<h3>" . htmlspecialchars($ingresso["evento"]) . "</h3>";
+                            echo "<p>Descrição: " . htmlspecialchars($ingresso["descricao"]) . "</p>";
+                            echo "<p>Valor: R$" . htmlspecialchars($ingresso["valor"]) . "</p>";
+                            echo "<p>Data: " . htmlspecialchars($ingresso["data_evento"]) . "</p>";
+                            echo "<p>Quantidade: " . htmlspecialchars($ingresso["quantidade"]) . "</p>";
+                            echo "<p>Reservado: " . ($ingresso["reservado"] ? "Reservado" : "Disponível" ) . "</p>";
+                            echo "<form class=\"edit\" action=\"/src/Logic/edit-ticket.php\" method=\"get\">
+                                    <input type=\"hidden\" class=\"hidden\" name=\"ticket-id\" value=\"" . intval($ingresso["id"]) . "\">
+                                    <input type=\"submit\" name=\"edit-button\" value=\"Editar\">
+                                </form>";
+                            echo "<form class=\"delete\" action=\"/src/Logic/delete-ticket.php\" method=\"get\">
+                                    <input type=\"hidden\" class=\"hidden\" name=\"ticket-id\" value=\"" . intval($ingresso["id"]) . "\">
+                                    <input type=\"submit\" name=\"delete-button\" value=\"Excluir\">
+                                </form>";
+                            echo "</div>";
                         }
                     } else {
                         echo "<p>Nenhum ingresso encontrado.</p>";
@@ -59,7 +78,6 @@
                 ?>
             </div>
         </div>
-    </div>
 </body>
 
 </html>

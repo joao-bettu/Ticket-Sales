@@ -49,3 +49,26 @@ h1, h2, h3 {
     display: inline-block;
     margin: 5px;
 }
+.options {
+    background-color: ghostwhite;
+    margin: auto;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+.permission-form input {
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: 1px solid black;
+    cursor: pointer;
+    text-align: center;;
+}
+.logout-form input {
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    border: 1px solid black;
+    cursor: pointer;
+    text-align: center;;
+}

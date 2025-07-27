@@ -25,7 +25,7 @@ if (isset($_SESSION["id"]) && $_SERVER["REQUEST_METHOD"] === "POST") {
     }
     
     $eventDate = DateTime::createFromFormat('Y-m-d', $_POST["data_evento"]);
-    if (!$eventDate) {
+    if (!$eventDate || $eventDate < new DateTime()) {
         $error[] = "A data do evento deve ser uma data válida e futura!";
     }
     

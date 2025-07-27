@@ -1,7 +1,7 @@
 # Projeto Final Dev Evolution
 
 ## Instruções para rodar o projeto/sistema
-1. Inicar o server com "php -S localhost:8000"
+1. Iniciar o server com "php -S localhost:8000"
 2. Acessar "http://127.0.0.1:8000/public/login.html"
 3. Criar uma conta caso não tenha clicando em "Criar conta"
 4. Logar com a conta criada
@@ -62,7 +62,7 @@
     3. O cliente pode comprar ingressos clicando em "Comprar" no ingresso desejado, caso o ingresso esteja disponível, ou seja, não está esgotado e nem reservado abrirá o form criado pelo arquivo buy-ticket.php.
         - Caso seja o último ingresso o sistema altera 3 campos no banco de dados, são eles "reservado", "cliente_reservado" e "data_ultima_reserva"
         - O campo reservado indica rapidamente se o ingresso está ou não reservado
-        - O campo cleinte_reservado mostra o cliente que reservou o ingresso
+        - O campo cliente_reservado mostra o cliente que reservou o ingresso
         - O campo data_ultima_reserva indica quando foi feita a reserva 
         - Caso a reserva passe de 2 minutos e o usuário não confirme a compra, os campos são resetados e o ingresso fica disponível novamente. A validação de 2 minutos é feita pela função validarUltimaReserva do arquivo buy-ticket.php
         - Caso o usuário confirme a compra a quantidade do ingresso é decrementada em 1 e é criado um registro de compra no banco de dados
@@ -83,11 +83,11 @@
     - Delete: exclui um registro da tabela
     - Find: retorna o primeiro item que se encaixa com os filtros recebidos
     - FindAllBy: retorna todos os itens que se encaixam com os filtros recebidos
-- Client, Sales, Ticket e User são classes filhas que herdam a AbstractClass, usadas para realizar as opreações de cada tabela (clientes, compras, ingressos e usuarios)
+- Client, Sales, Ticket e User são classes filhas que herdam a AbstractClass, usadas para realizar as operações de cada tabela (clientes, compras, ingressos e usuarios)
 
 ## Core
 - DB.php é a classe que realiza a conexão com o banco de dados SQLite
-- CreateTableas é a classe que cria as tabelas de clientes, usuarios, ingressos e compras no banco de dados
+- CreateTables é a classe que cria as tabelas de clientes, usuarios, ingressos e compras no banco de dados
 - database.php é o arquivo para centralizar a conexão com banco de dados e criação de tabelas, para evitar repetição de código
 
 ## Checklist do que foi implementado

@@ -112,7 +112,7 @@ abstract class AbstractClass {
             $stmt->execute($parameters);
             
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            
+
             return $result === false ? null : $result;
             
         } catch (PDOException $e) {

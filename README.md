@@ -75,8 +75,6 @@
         - Ao clicar em excluir é chamado o arquivo delete-ticket que verificará se o usuário tem permissão antes de deletar, caso o usuário tenha permissão a exclusão é feita pelo método delete da classe
         - Ao clicar em editar chama o arquivo edit-ticket.php que abre um form com os campos do ingresso que se pode editar, os mesmos da criação de ingresso, o usuário irá preencher as novas informações e clicar em salvar alterações o edit-ticket.php usa o método update da classe para alterar os dados dos ingressos
 
-## Explicação dos bônus
-
 ## Checklist do que foi implementado
 ### Usuários
 

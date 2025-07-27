@@ -75,6 +75,21 @@
         - Ao clicar em excluir é chamado o arquivo delete-ticket que verificará se o usuário tem permissão antes de deletar, caso o usuário tenha permissão a exclusão é feita pelo método delete da classe
         - Ao clicar em editar chama o arquivo edit-ticket.php que abre um form com os campos do ingresso que se pode editar, os mesmos da criação de ingresso, o usuário irá preencher as novas informações e clicar em salvar alterações o edit-ticket.php usa o método update da classe para alterar os dados dos ingressos
 
+## Classes
+- AbstractClass: Contém todos os métodos de banco de dados, CRUD, find e findAllBy
+    - Create: realiza o insert do item na tabela
+    - Read: retorna todos os registros da tabela
+    - Update: atualiza um item da tabela
+    - Delete: exclui um registro da tabela
+    - Find: retorna o primeiro item que se encaixa com os filtros recebidos
+    - FindAllBy: retorna todos os itens que se encaixam com os filtros recebidos
+- Client, Sales, Ticket e User são classes filhas que herdam a AbstractClass, usadas para realizar as opreações de cada tabela (clientes, compras, ingressos e usuarios)
+
+## Core
+- DB.php é a classe que realiza a conexão com o banco de dados SQLite
+- CreateTableas é a classe que cria as tabelas de clientes, usuarios, ingressos e compras no banco de dados
+- database.php é o arquivo para centralizar a conexão com banco de dados e criação de tabelas, para evitar repetição de código
+
 ## Checklist do que foi implementado
 ### Usuários
 

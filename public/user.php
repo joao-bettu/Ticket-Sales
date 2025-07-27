@@ -59,11 +59,11 @@
                             echo "<p><strong>Quantidade</strong>: " . ($ingresso["quantidade"] > 0 ? $ingresso["quantidade"] : "Esgotado") . "</p>";
                             echo "<p><strong>Reservado</strong>: " . ($ingresso["reservado"] ? "Sim" : "Não" ) . "</p>";
                             echo "<form class=\"edit\" action=\"/src/Logic/edit-ticket.php\" method=\"get\">
-                                    <input type=\"hidden\" class=\"hidden\" name=\"ticket-id\" value=\"" . intval($ingresso["id"]) . "\">
+                                    <input type=\"hidden\" class=\"hidden\" name=\"ticket-id\" value=\"" . $ingresso["id"] . "\">
                                     <input type=\"submit\" name=\"edit-button\" value=\"Editar\">
                                 </form>";
                             echo "<form class=\"delete\" action=\"/src/Logic/delete-ticket.php\" method=\"get\">
-                                    <input type=\"hidden\" class=\"hidden\" name=\"ticket-id\" value=\"" . intval($ingresso["id"]) . "\">
+                                    <input type=\"hidden\" class=\"hidden\" name=\"ticket-id\" value=\"" . $ingresso["id"] . "\">
                                     <input type=\"submit\" name=\"delete-button\" value=\"Excluir\">
                                 </form>";
                             echo "</div>";

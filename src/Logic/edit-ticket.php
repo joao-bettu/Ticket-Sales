@@ -24,11 +24,12 @@ if ($loged_user["editar"]){
     $edit_ticket = $tickets->find([
         "id" => $_GET["ticket-id"]
     ]);
-    if ($edit_ticket !== null) {
+
+    if ($_SERVER["REQUEST_METHOD"] === "GET" && $edit_ticket) {
         $erros = [];
         echo "<h3>Editar Ingresso</h3>";
         echo "<form class=\"edit-ticket\" action=\"/src/Logic/edit-ticket.php\" method=\"post\">
-                <input type=\"hidden\" name=\"ticket-id\" value=\"" . intval($edit_ticket["id"]) . "\">
+                <input type=\"hidden\" name=\"ticket-id\" value=\"" . $edit_ticket["id"] . "\">
                 <input type=\"text\" id=\"evento\" name=\"evento\" value=\"" . htmlspecialchars($edit_ticket["evento"]) . "\" required>
                 <input type=\"text\" id=\"descricao\" name=\"descricao\" value=\"" . htmlspecialchars($edit_ticket["descricao"]) . "\">
                 <input type=\"text\" id=\"valor\" name=\"valor\" value=\"" . htmlspecialchars($edit_ticket["valor"]) . "\" required>
@@ -38,7 +39,7 @@ if ($loged_user["editar"]){
             </form>";
             echo "<br>";
             echo "<a href=\"/public/user.php\">Voltar para o menu principal</a>";
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    } else if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["ticket-id"])) {
             $new_event = filter_var($_POST["evento"], FILTER_UNSAFE_RAW, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH);
             if (empty(trim($new_event))) {
                 $erros[] = "O nome do evento é obrigatório!";
@@ -74,11 +75,11 @@ if ($loged_user["editar"]){
                 header("Location: /../../public/user.php?mensagem=" . urlencode($mensagem));
                 exit;
             }
-        }
-    } else {
+        } else {
         header("Location: /../../public/user.php?mensagem=ingresso-nao-encontrado");
         exit;
     }
+    
 } else {
     header("Location: /../../public/user.php?mensagem=usuario-sem-permissao-para-editar-ingressos");
     exit;
